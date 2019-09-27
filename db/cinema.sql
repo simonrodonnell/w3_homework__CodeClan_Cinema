@@ -14,6 +14,12 @@ CREATE TABLE films (
   price INT
 );
 
+CREATE TABLE screenings (
+  id SERIAL8 PRIMARY KEY,
+  showtime VARCHAR(255),
+  film_id INT8 REFERENCES films(id) ON DELETE CASCADE
+);
+
 CREATE TABLE tickets (
   id SERIAL8 PRIMARY KEY,
   customer_id INT8 REFERENCES customers(id) ON DELETE CASCADE,
