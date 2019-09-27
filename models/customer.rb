@@ -1,4 +1,5 @@
 require_relative("./film")
+require_relative("./ticket")
 require_relative("../db/sql_runner")
 
 class Customer
@@ -9,7 +10,7 @@ class Customer
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
-    @funds = options['funds']
+    @funds = options['funds'].to_i
   end
 
   def save()
@@ -52,6 +53,24 @@ class Customer
     values = [@id]
     film_data = SqlRunner.run(sql, values)
     return Film.map_items(film_data)
+  end
+
+  def number_of_tickets()
+    sql = "SELECT tickets.* FROM tickets WHERE customer_id = $1"
+    values = [@id]
+    tickets_data = SqlRunner.run(sql, values)
+    tickets_array = Customer.map_items(tickets_data)
+    return tickets_array.length()
+  end
+
+  def buy_ticket(film)
+    @funds = @funds - film.price()
+    update()
+    new_ticket = Ticket.new({
+      "customer_id" => @id,
+      "film_id" => film.id
+      })
+    new_ticket.save()
   end
 
   def self.all()
