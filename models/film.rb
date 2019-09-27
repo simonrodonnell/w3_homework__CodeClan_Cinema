@@ -19,19 +19,17 @@ class Film
     )
     VALUES
     ($1, $2)
-    RETURN id"
+    RETURNING id"
     values = [@title, @price]
     film = SqlRunner.run(sql, values).first
     @id = film['id'].to_i
   end
-
 
   def self.all()
     sql = "SELECT * FROM films"
     film_data = SqlRunner.run(sql)
     return Customer.map_items(film_data)
   end
-
 
   def self.delete_all()
     sql = "DELETE FROM films"
