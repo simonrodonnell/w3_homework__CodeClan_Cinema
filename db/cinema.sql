@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS tickets;
+DROP TABLE IF EXISTS screenings;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS films;
 
