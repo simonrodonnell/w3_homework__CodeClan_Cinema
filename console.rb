@@ -1,10 +1,12 @@
 require_relative("models/ticket")
 require_relative("models/customer")
 require_relative("models/film")
+require_relative("models/screening")
 
 require("pry")
 
 Ticket.delete_all()
+Screening.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
@@ -21,18 +23,18 @@ film2 = Film.new({
   "price" => "2"
   })
 film2.save()
-
-film3 = Film.new({
-  "title" => "Alien",
-  "price" => "3"
-  })
-film3.save()
-
-film4 = Film.new({
-  "title" => "Old Boy",
-  "price" => "6"
-  })
-film4.save()
+#
+# film3 = Film.new({
+#   "title" => "Alien",
+#   "price" => "3"
+#   })
+# film3.save()
+#
+# film4 = Film.new({
+#   "title" => "Old Boy",
+#   "price" => "6"
+#   })
+# film4.save()
 
 #set up customers
 
@@ -60,34 +62,69 @@ customer4 = Customer.new({
   })
 customer4.save()
 
+# set up screenings
+
+screening1 = Screening.new({
+  "showtime" => "17.00",
+  "capacity" => 1
+  })
+screening1.save()
+
+screening2 = Screening.new({
+  "showtime" => "13.30",
+  "capacity" => 1
+  })
+screening2.save()
+
+screening3 = Screening.new({
+  "showtime" => "19.45",
+  "capacity" => 1
+  })
+screening3.save()
+
+# screening4 = Screening.new({
+#   "showtime" => "13.30",
+#   "capacity" => 1
+#   })
+# screening4.save()
+#
+# screening5 = Screening.new({
+#   "showtime" => "21.15",
+#   "capacity" => 1
+#   })
+# screening5.save()
 
 #set up tickets
 ticket1 = Ticket.new({
   "customer_id" => customer1.id,
-  "film_id" => film1.id
+  "film_id" => film1.id,
+  "screening_id" => screening1.id
   })
 ticket1.save()
 ticket2 = Ticket.new({
   "customer_id" => customer2.id,
-  "film_id" => film2.id
+  "film_id" => film1.id,
+  "screening_id" => screening2.id
   })
 ticket2.save()
 ticket3 = Ticket.new({
   "customer_id" => customer3.id,
-  "film_id" => film3.id
+  "film_id" => film2.id,
+  "screening_id" => screening3.id
   })
 ticket3.save()
 ticket4 = Ticket.new({
   "customer_id" => customer4.id,
-  "film_id" => film4.id
+  "film_id" => film1.id,
+  "screening_id" => screening2.id
   })
 ticket4.save()
-ticket5 = Ticket.new({
-  "customer_id" => customer1.id,
-  "film_id" => film4.id
-  })
-ticket5.save()
-
+# ticket5 = Ticket.new({
+#   "customer_id" => customer1.id,
+#   "film_id" => film2.id,
+#   "screening_id" => screening1.id
+#   })
+# ticket5.save()
 
 binding.pry
 nil
