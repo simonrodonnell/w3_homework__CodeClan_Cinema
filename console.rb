@@ -76,11 +76,11 @@ screening2 = Screening.new({
   })
 screening2.save()
 
-screening3 = Screening.new({
-  "showtime" => "19.45",
-  "capacity" => 1
-  })
-screening3.save()
+# screening3 = Screening.new({
+#   "showtime" => "19.45",
+#   "capacity" => 1
+#   })
+# screening3.save()
 
 # screening4 = Screening.new({
 #   "showtime" => "13.30",
@@ -110,12 +110,12 @@ ticket2.save()
 ticket3 = Ticket.new({
   "customer_id" => customer3.id,
   "film_id" => film2.id,
-  "screening_id" => screening3.id
+  "screening_id" => screening1.id
   })
 ticket3.save()
 ticket4 = Ticket.new({
   "customer_id" => customer4.id,
-  "film_id" => film1.id,
+  "film_id" => film2.id,
   "screening_id" => screening2.id
   })
 ticket4.save()
